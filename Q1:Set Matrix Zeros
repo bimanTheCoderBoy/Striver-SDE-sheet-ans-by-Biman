@@ -1,0 +1,72 @@
+//Q-link:https://leetcode.com/problems/set-matrix-zeroes/description/
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int m=matrix.length;
+        int n=matrix[0].length;
+        //first row detaction
+        boolean rowHasZero=false;
+        for(int i=0;i<n;i++)
+        {
+            if(matrix[0][i]==0)
+            rowHasZero=true;
+        }
+
+        //first col detaction
+        boolean colHasZero=false;
+        for(int i=0;i<m;i++)
+        {
+            if(matrix[i][0]==0)
+            colHasZero=true;
+        }
+
+        //making coresponding  first row and first col position as Zero
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    matrix[0][j]=0;
+                    matrix[i][0]=0;
+                }
+            }
+        }
+
+        //making coresponding col as zero
+        for(int i=1;i<n;i++)
+        {
+            if(matrix[0][i]==0)
+            {
+                for(int j=0;j<m;j++)
+                {
+                    matrix[j][i]=0;
+                }
+            }
+        }
+
+        //making coresponding row as zero
+        for(int i=1;i<m;i++)
+        {
+            if(matrix[i][0]==0)
+            {
+                for(int j=0;j<n;j++)
+                {
+                    matrix[i][j]=0;
+                }
+            }
+        }
+
+        if(rowHasZero)
+        {
+            for(int i=0;i<n;i++)
+            matrix[0][i]=0;
+        }
+        if(colHasZero)
+        {
+            for(int i=0;i<m;i++)
+            matrix[i][0]=0;
+        }
+
+    }
+}
