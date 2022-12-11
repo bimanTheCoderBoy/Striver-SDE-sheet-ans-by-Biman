@@ -1,0 +1,20 @@
+//Q-link: https://leetcode.com/problems/pascals-triangle/description/
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>>ans=new ArrayList<>();
+        for(int i=0;i<numRows;i++)
+        {
+            List<Integer>m=new ArrayList<>();
+            int prev=1;
+            m.add(prev);
+            for(int j=1;j<=i;j++)
+            {
+                int curr=(prev*(i-j+1))/j;
+                prev=curr;
+                m.add(curr);
+            }
+            ans.add(m);
+        }
+        return ans;
+    }
+}
