@@ -1,0 +1,37 @@
+link-https://leetcode.com/problems/merge-intervals/description/
+
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals,new Comparator<int[]>(){
+            public int compare(int[]a,int[]b){
+                return (a[0]-b[0]);
+            }
+        });
+        Stack<int[]>m=new Stack<>();
+       m.push(new int[]{intervals[0][0],intervals[0][1]});
+       int n=intervals.length;
+       for(int i=1;i<n;i++)
+       {
+           int[] prev=m.peek();
+           int prevEnd=prev[1];
+           int currStart=intervals[i][0];
+           if(prevEnd>=currStart)
+           {
+               int [] overlap={Math.min(prev[0],intervals[i][0]),Math.max(prev[1],intervals[i][1])};
+               m.pop();
+               m.push(overlap);
+           }else{
+               m.push(intervals[i]);
+               //java array is very flexible, we can extract a part of an array and can     
+               //attach it with other array
+           }
+       }
+       int size=m.size();
+       int[][]ans=new int[size][2];
+       for(int i=size-1;i>=0;i--)
+       {
+           ans[i]=m.pop();
+       }
+       return ans;
+    }
+}
