@@ -1,0 +1,51 @@
+link- https://www.interviewbit.com/problems/repeat-and-missing-number-array/
+
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] repeatedNumber(final int[] A) {
+        int n=A.length;
+        boolean[] check=new boolean[n+1];
+         int[] ans=new int[2];
+        int k=0;
+        for(int i=0;i<n;i++)
+        {
+            check[A[i]]=!check[A[i]];
+            if(!check[A[i]])
+            {
+                check[A[i]]=true;
+                ans[k]=A[i];
+                k++;
+               
+            }
+        }
+       
+        for(int i=1;i<=n;i++)
+        {
+            if(!check[i])
+            {
+                ans[k]=i;
+                break;
+            }
+        }
+        return ans;
+    }
+}
+/*
+public ArrayList<Integer> repeatedNumber(final List<Integer> A) {
+long sum = 0, squareArraySum = 0;
+long n = A.size();
+long sumOfN = (n * (n + 1)) / 2;
+long sumofSquareN = (n * (n + 1) * (2 * n + 1)) / 6;
+for (int i = 0; i < n; i++) {
+sum += (long) A.get(i);
+squareArraySum += (long) A.get(i) * (long) A.get(i);
+}
+long missingMinusRepeat = sumOfN - sum;
+long repeatPlusMissing = (sumofSquareN - squareArraySum) / missingMinusRepeat;
+ArrayList<Integer> ans = new ArrayList<Integer>();
+ans.add((int) (repeatPlusMissing - missingMinusRepeat) / 2);
+ans.add((int) (repeatPlusMissing + missingMinusRepeat) / 2);
+return ans;
+}
+
+*/
